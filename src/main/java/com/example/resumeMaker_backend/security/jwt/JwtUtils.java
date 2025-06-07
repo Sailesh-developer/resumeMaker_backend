@@ -1,6 +1,7 @@
 package com.example.resumeMaker_backend.security.jwt;
 
-import com.ecommerce.project.security.services.UserDetailsImpl;
+
+import com.example.resumeMaker_backend.security.services.UserDetailsImpl;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -30,17 +31,17 @@ public class JwtUtils {
     @Value("${spring.app.jwtExpirationMs}")
     private int jwtExpirationMs;
 
-    @Value("${spring.ecom.app.jwtCookieName}")
+    @Value("${spring.example.resumeMaker.jwtCookieName}")
     private String jwtCookie;
 
-//        public String getJwtFromHeader(HttpServletRequest request) {
-//            String bearerToken = request.getHeader("Authorization");
-//            logger.debug("Authorization Header: {}", bearerToken);
-//            if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
-//                return bearerToken.substring(7); // Remove Bearer prefix
-//            }
-//            return null;
-//        }
+        public String getJwtFromHeader(HttpServletRequest request) {
+            String bearerToken = request.getHeader("Authorization");
+            logger.debug("Authorization Header: {}", bearerToken);
+            if (bearerToken != null && bearerToken.startsWith("Bearer ")) {
+                return bearerToken.substring(7); // Remove Bearer prefix
+            }
+            return null;
+        }
 
     public String getJwtFromCookies(HttpServletRequest request) {
         Cookie cookie = WebUtils.getCookie(request, jwtCookie);
